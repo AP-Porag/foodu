@@ -6,15 +6,18 @@ const routes = [
     children: [
       { path: '',
         component: () => import('pages/Home.vue')
-      }
-    ]
-  },
-  {
-    path: '/login',
-    component: () => import('layouts/AuthLayout.vue'),
-    children: [
-      { path: '',
+      },
+      { path: '/categories',
+        component: () => import('pages/Categories.vue')
+      },
+      { path: '/foods',
+        component: () => import('pages/Foods.vue')
+      },
+      { path: '/login',
         component: () => import('pages/Auth.vue')
+      },
+      { path: '/checkout',
+        component: () => import('pages/Checkout.vue')
       }
     ]
   },
@@ -23,7 +26,19 @@ const routes = [
     component: () => import('layouts/AdminLayout.vue'),
     children: [
       { path: '',
-        component: () => import('pages/Dashboard.vue')
+        component: () => import('pages/admin/Dashboard.vue')
+      },
+      { path: 'dashboard',
+        component: () => import('pages/admin/Dashboard.vue')
+      },
+      { path: 'categories',
+        component: () => import('pages/admin/Categories.vue')
+      },
+      { path: 'products',
+        component: () => import('pages/admin/Products.vue')
+      },
+      { path: 'orders',
+        component: () => import('pages/admin/Orders.vue')
       }
     ]
   },

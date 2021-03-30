@@ -32,6 +32,98 @@
               :label="menu.title"
               :to="menu.link"
             />
+            <q-btn-dropdown
+              class="glossy"
+              color="accent"
+              icon="shopping_cart"
+            >
+              <div class="row no-wrap q-pa-md">
+                <div class="column">
+                  <div class="text-h6 q-mb-md">Products List</div>
+                  <div class="q-pa-md q-gutter-md">
+
+                    <q-list bordered class="rounded-borders" style="max-width: 600px">
+
+                      <q-item
+                        clickable
+                        bordered
+                      >
+                        <q-item-section avatar top>
+                          <q-avatar>
+                            <img src="https://cdn.quasar.dev/img/avatar4.jpg">
+                          </q-avatar>
+                        </q-item-section>
+
+                        <q-item-section top class="col-2 gt-sm">
+                          <q-item-label class="q-mt-sm">Title</q-item-label>
+                          <q-item-label class="q-mt-sm">$10</q-item-label>
+                        </q-item-section>
+
+                        <q-item-section center>
+                          <q-input
+                            type="number"
+                            borderless
+                            style="max-width: 200px"
+                          />
+                        </q-item-section>
+
+                        <q-item-section center side>
+                          <div class="text-grey-8 q-gutter-xs">
+                            <q-btn class="gt-xs" size="12px" flat dense round icon="plus" />
+                            <q-btn class="gt-xs" size="12px" flat dense round icon="minus" />
+                            <q-btn class="gt-xs" size="12px" flat dense round icon="cross" />
+                          </div>
+                        </q-item-section>
+                      </q-item>
+
+                      <q-separator spaced />
+
+                      <q-item clickable v-ripple>
+                        <div class="justify-between">
+                          <span class="text-capitalize text-h6 text-weight-bold text-secondary">Sub-Total</span>
+                          <span class="text-capitalize text-h6 text-weight-bold text-secondary">$750</span>
+                        </div>
+                      </q-item>
+                      <q-item clickable v-ripple>
+                        <div class="justify-between">
+                          <span class="text-capitalize text-h5 text-weight-bold text-primary">Total to pay</span>
+                          <span class="text-capitalize text-h5 text-weight-bold text-primary">$750</span>
+                        </div>
+                      </q-item>
+                    </q-list>
+                  </div>
+                </div>
+
+                <q-separator vertical inset class="q-mx-lg" />
+
+                <div class="column items-center">
+                  <q-avatar size="72px">
+                    <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                  </q-avatar>
+
+                  <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+
+                  <div class="justify-between">
+                    <q-btn
+                      color="primary"
+                      label="checkout"
+                      push
+                      size="sm"
+                      v-close-popup
+                      to="/checkout"
+                      class="q-mr-md"
+                    />
+                    <q-btn
+                      color="primary"
+                      label="Logout"
+                      push
+                      size="sm"
+                      v-close-popup
+                    />
+                  </div>
+                </div>
+              </div>
+            </q-btn-dropdown>
           </q-list>
         </div>
       </q-toolbar>
@@ -64,12 +156,12 @@
     <div class="row bg-secondary q-pa-lg">
       <div class="social_links text-center" style="width: 100%;">
         <q-btn round color="primary" glossy icon="facebook" class="q-mr-md"/>
-        <q-btn round color="primary" glossy icon="instagram" class="q-mr-md"/>
+        <q-btn round color="primary" glossy icon="mdi-instagram" class="q-mr-md"/>
         <q-btn round color="primary" glossy icon="tweeter"/>
       </div>
       <div class="copyright text-center q-pt-md" style="width: 100%;">
-        <p>copyright<span>2021 - All rights reserved.</span></p>
-        <p>Designed & developed By <a href="#" style="color: white;text-decoration: none;">S. Asraf </a></p>
+        <p class="text-capitalize">&copy;<span> 2021 - All rights reserved.</span></p>
+        <p class="text-capitalize">Designed & developed By <a href="#" style="color: white;text-decoration: none;">S. Asraf </a></p>
       </div>
     </div>
   </q-layout>
@@ -86,9 +178,9 @@ export default {
       menus:[
         {title:"home",link:"/"},
         {title:"categories",link:"/categories"},
-        {title:"foods",link:"/foods"},
-        {title:"contacts",link:"/contacts"},
-        {title:"about-us",link:"/about"},
+        {title:"foods",link:"/foods",},
+        {title:"Login",link:"/login"},
+        {title:"account",link:"/admin"},
       ],
 
     }
