@@ -31,13 +31,14 @@
 
               <div class="column items-center">
                 <q-avatar size="72px">
-                  <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                  <img :src="user.avatar">
                 </q-avatar>
 
-                <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+                <div class="text-subtitle1 q-mt-md q-mb-xs">{{user.name}}</div>
 
                 <div >
                   <q-btn
+                    @click="logoutUser"
                     color="primary"
                     label="Logout"
                     push
@@ -107,9 +108,20 @@ export default {
         {title:'dashboard',icon:'dashboard',link:'/admin/dashboard'},
         {title:'categories',icon:'list',link:'/admin/categories'},
         {title:'products',icon:'facebook',link:'/admin/products'},
-        {title:'orders',icon:'shopping_cart',link:'/admin/orders'}
+        {title:'orders',icon:'shopping_cart',link:'/admin/orders'},
+        {title:'users',icon:'shopping_cart',link:'/admin/users'},
       ]
     }
+  },
+  computed:{
+    user(){
+      return this.$store.getters['user/userDetails']
+    }
+  },
+  methods:{
+    async logoutUser(){
+      await this.$store.dispatch('user/logoutUser')
+    },
   }
 }
 </script>

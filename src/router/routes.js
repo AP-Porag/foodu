@@ -1,3 +1,4 @@
+import AuthGaurd from './admin-auth-gaurd'
 
 const routes = [
   {
@@ -24,6 +25,7 @@ const routes = [
   {
     path: '/admin',
     component: () => import('layouts/AdminLayout.vue'),
+    beforeEnter:AuthGaurd,
     children: [
       { path: '',
         component: () => import('pages/admin/Dashboard.vue')
@@ -39,7 +41,10 @@ const routes = [
       },
       { path: 'orders',
         component: () => import('pages/admin/Orders.vue')
-      }
+      },
+      { path: 'users',
+        component: () => import('pages/admin/Users.vue')
+      },
     ]
   },
 
@@ -50,5 +55,7 @@ const routes = [
     component: () => import('pages/Error404.vue')
   }
 ]
+
+
 
 export default routes

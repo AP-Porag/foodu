@@ -1,6 +1,7 @@
 <template>
   <div class="">
-    <div class="text-h6 text-center text-uppercase text-white" style="margin-bottom: 30px">{{tab == 'registration' ? 'Start With qweeter' : tab+' Here'}}</div>
+    <div class="text-h6 text-center text-uppercase text-primary" style="margin-bottom: 30px">{{tab === 'registration' ? 'Start With foodu' : tab
+      + ' Here'}}</div>
     <div class="">
       <q-form
         class="q-gutter-md"
@@ -31,7 +32,7 @@
 
         <div class="row">
           <q-btn
-            :label="tab == 'registration' ? 'Create Account': 'Login'"
+            :label="tab === 'registration' ? 'Create Account': 'Login'"
             color="primary"
             class="col"
           @click="submitForm"
@@ -43,7 +44,6 @@
   </div>
 </template>
 <script>
-import {mapActions} from 'vuex'
 export default {
   props:['tab'],
   data(){
@@ -57,7 +57,7 @@ export default {
   },
   methods:{
     async submitForm(){
-      if (this.tab == 'login'){
+      if (this.tab === 'login'){
         await this.$store.dispatch('user/loginUser',this.formData)
       }else {
         await this.$store.dispatch("user/registerUser",this.formData)

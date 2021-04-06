@@ -32,13 +32,29 @@
               :label="menu.title"
               :to="menu.link"
             />
+            <q-btn
+              v-if="user.userId"
+              class="q-mr-sm"
+              flat
+              color="secondary"
+              label="account"
+              :to="user.role === 'admin'? '/admin': '/'"
+            />
+            <q-btn
+              v-else
+              class="q-mr-sm"
+              flat
+              color="secondary"
+              label="Login"
+              to="/login"
+            />
             <q-btn-dropdown
               class="glossy"
               color="accent"
               icon="shopping_cart"
             >
               <div class="row no-wrap q-pa-md">
-                <div class="column">
+                <div class="column" v-if="user.role === 'customer'">
                   <div class="text-h6 q-mb-md">Products List</div>
                   <div class="q-pa-md q-gutter-md">
 
@@ -94,33 +110,43 @@
                   </div>
                 </div>
 
-                <q-separator vertical inset class="q-mx-lg" />
+                <q-separator vertical inset class="q-mx-lg" v-if="user.role === 'customer'"/>
 
                 <div class="column items-center">
-                  <q-avatar size="72px">
-                    <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-                  </q-avatar>
+                  <div class="column items-center"
+                  v-if="user.userId"
+                  >
+                    <q-avatar size="72px">
+                      <img :src="user.avatar">
+                    </q-avatar>
 
-                  <div class="text-subtitle1 q-mt-md q-mb-xs">John Doe</div>
+                    <div class="text-subtitle1 q-mt-md q-mb-xs">{{user.name}}</div>
 
-                  <div class="justify-between">
-                    <q-btn
-                      color="primary"
-                      label="checkout"
-                      push
-                      size="sm"
-                      v-close-popup
-                      to="/checkout"
-                      class="q-mr-md"
-                    />
-                    <q-btn
-                      color="primary"
-                      label="Logout"
-                      push
-                      size="sm"
-                      v-close-popup
-                    />
+                    <div class="justify-between">
+                      <q-btn
+                        v-if="user.role === 'customer'"
+                        color="primary"
+                        label="checkout"
+                        push
+                        size="sm"
+                        v-close-popup
+                        to="/checkout"
+                        class="q-mr-md"
+                      />
+                      <q-btn
+                        v-if="user.userId"
+                        color="primary"
+                        label="Logout"
+                        push
+                        size="sm"
+                        v-close-popup
+                        @click="logoutUser"
+                      />
+                    </div>
                   </div>
+                  <div class="column items-center text-primary text-h6"
+                  v-else
+                  >Please login or register</div>
                 </div>
               </div>
             </q-btn-dropdown>
@@ -179,11 +205,19 @@ export default {
         {title:"home",link:"/"},
         {title:"categories",link:"/categories"},
         {title:"foods",link:"/foods",},
-        {title:"Login",link:"/login"},
-        {title:"account",link:"/admin"},
       ],
 
     }
+  },
+  computed:{
+    user(){
+      return this.$store.getters['user/userDetails']
+    }
+  },
+  methods:{
+    async logoutUser(){
+      await this.$store.dispatch('user/logoutUser')
+    },
   }
 }
 </script>

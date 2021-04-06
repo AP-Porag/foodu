@@ -11,10 +11,11 @@ const firebaseConfig = {
   appId: "1:477086343990:web:0b6db3a69a8f08bff08997"
 };
 
-export default async ( { store ,app, router, Vue } ) => {
+export default async ( { store ,app, router, Vue ,} ) => {
   const fireApp = firebase.initializeApp(firebaseConfig);
   Vue.prototype.$database = fireApp.firestore();
   Vue.prototype.$auth = fireApp.auth();
+
 }
 
 
